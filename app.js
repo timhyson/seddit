@@ -1,10 +1,25 @@
-var app = angular.module ('seddit', []);
+var app = angular.module ('seddit', ['ui.router']);
 
 app.factory('posts', [function() {
   var o = {
     posts: []
   };
   return o;
+}]);
+
+app.config ([
+  '$stateProvider',
+  '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+    .state('home', {
+      url: '/home',
+      templateUrl: '/home.html',
+      controller: 'MainCtrl'
+    });
+
+  $urlRouterProvider.otherwise('home');
 }]);
 
 app.controller ('MainCtrl', [
